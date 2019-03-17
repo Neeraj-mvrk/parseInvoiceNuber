@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <title>Home</title>
+    </head>
+    <body ng-app="fileUpload">
+        <h1>Parse invoice numbers</h1>
+        <form  ng-controller="MyCtrl as up" name="up.upload_form">
+                Single File with validations
+            <input
+               type="file"
+               ngf-select
+               ng-model="up.file"
+               name="file"
+               ngf-pattern="'.txt,image/*'"
+               accept=".txt,image/*"
+               ngf-max-size="20MB"
+               />
+            <i ng-show="up.upload_form.file.$error.required">*required</i><br>
+            <i ng-show="up.upload_form.file.$error.maxSize">File too large
+            {{up.file.size / 1000000|number:1}}MB: max 20M</i>
+            <a id='download'></a>
+            <button type="submit" ng-click="up.submit()">submit</button>
+            <p>{{up.progress}}
+        </form>
+    </body>
+    <script type="text/javascript" src="angular.min.js"></script>
+    <script type="text/javascript" src="ng-file-upload.min.js"></script>
+    <script type="text/javascript" src="ng-file-upload-shim.min.js"></script>
+    <script type="text/javascript" src="ctrl.js"></script>
+</html>
